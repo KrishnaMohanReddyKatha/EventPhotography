@@ -9,14 +9,29 @@ router.get('/', function(req, res) {
 	var date = req.query.date; 
 	console.log(date);
     var collection = db.get('Phtographers');
-
+    //console.log(sess); 
     collection.update({'id':photographerId},{$push : {"reservedDates" : date}
 	 	
 	 	}, function(err, photographer){
-    	    	if (err) throw err;
-    	    	console.log('successfully reserved');
+            if (err) throw err;
+            var orders = db.get('orders');
+            console.log(req.app.locals.email);
+            orders.insert({"user_id":req.app.locals.email, "service":req.query.service, "photographer": req.query.pfname + " " + req.query.plname,
+                                                    "date":date, status:"active"},
+             function(err, data){
+               if(err)
+                throw err;
+                console.log('successfully reserved');
+            });
         	});
-    /*
+        res.redirect('/');
+});
+module.exports = router;
+
+
+
+
+/*
     collection.findOne({'id':photographerId}, function(err, photographer){
         if (err) throw err;
         photographer.reservedDates.push(date);
@@ -43,7 +58,3 @@ router.get('/', function(req, res) {
 );
     });
     */
-    res.redirect('/');
-});
-
-module.exports = router;

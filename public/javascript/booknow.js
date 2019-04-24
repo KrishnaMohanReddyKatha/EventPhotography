@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    var eventType;
     var isadmin,user,fname=""
     if (document.cookie != ""){
         var mycookies = document.cookie.split(";");
@@ -33,7 +34,7 @@ $(document).ready(function(){
 	$("#getPhotographers").click(function(){
 		/*console.log("in click event handler");
 		alert($("#eventType").innerHTML);*/
-		var eventType = $(".dropdown-toggle").html();
+		eventType = $(".dropdown-toggle").html();
 		var date = $('#datepicker').val();
 		/*if(eventType == "Select Event Type") {
 			
@@ -49,7 +50,7 @@ $(document).ready(function(){
             $('#photographerList').empty();	
             $.each(photographers,function(i,photographer){
             	if(photographer != null) {
-	                $('#photographerList').append('<div class="col-sm-8" style="padding-bottom:10px"><img src="images/photographers/'+(photographer.id)+'.jpg" alt="'+photographer.id+'" style="width:200px;height:200px"> <span>'+photographer.fname+" "+photographer.lname+" Rating:"+photographer.userRating+'<a href="/reserve?photographerId='+photographer.id+'&date='+date+'"><button>Reserve</button></a></span></div>');
+	                $('#photographerList').append('<div class="col-sm-8" style="padding-bottom:10px"><img src="images/photographers/'+(photographer.id)+'.jpg" alt="'+photographer.id+'" style="width:200px;height:200px"> <span>'+photographer.fname+" "+photographer.lname+" Rating:"+photographer.userRating+'<a href="/reserve?photographerId='+photographer.id+'&date='+date+'&service='+eventType+'&pfname='+photographer.fname+'&plname='+photographer.lname+'"><button>Reserve</button></a></span></div>');
         		}    
         	});
         },

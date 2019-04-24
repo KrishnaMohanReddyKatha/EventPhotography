@@ -16,7 +16,7 @@ router.post('/', function(req, res, next) {
 						pwd = hash;
 						console.log(pwd);
 						console.log(req.body.email);
-                     	collection.insert({'fname':req.body.fname, 'lname':req.body.lname, 'email':req.body.email, 'password':pwd,'isAdmin':'false'}, function(err, response){
+                     	collection.insert({'fname':req.body.fname, 'lname':req.body.lname, 'email':req.body.email, 'password':pwd,'isadmin':'false'}, function(err, response){
 						if (err) throw err;
 						console.log("success");
 							  res.render('registrationSuccess.html');

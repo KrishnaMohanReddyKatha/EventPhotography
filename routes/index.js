@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-console.log('in js');
 router.get('/', function(req, res, next) {
-  console.log(req.session +"index.js");
-  sess=req.session;
+  //console.log("hello :");
+  //if(req.app.locals.email === "") {
+    //    console.log("session intialized"+sess);
+    //    sess=req.session;
+ // }
   res.sendfile('./views/index.html');
 });
 
@@ -18,13 +20,8 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next) {
+  sess.email = null;
   res.sendfile('./views/login.html');
-});
-
-
-
-router.get('/booknow', function(req, res, next) {
-  res.sendfile('./views/booknow.html');
 });
 
 router.get('/gallery', function(req, res, next) {
@@ -61,7 +58,8 @@ router.get('/editPhotographer', function(req, res, next) {
 });
 
 router.get('/booknow', function(req, res, next) {
-  if(sess.email) {
+  console.log(req.app.locals.email);
+  if(req.app.locals.email) {
     res.sendfile('./views/booknow.html');
   } else {
     res.sendfile('./views/login.html');

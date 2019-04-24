@@ -26,14 +26,14 @@ router.post('/', function(req, res, next) {
             console.log(err);
 
         if (isMatch) {
-            sess.email=req.body.email;
-            console.log(sess);
+            req.app.locals.email=req.body.email;
+            //console.log(sess);
             console.log('true');
             console.log(data.fname);
             console.log(data._id);
             var myid = data._id;
             res.cookie('isadmin',data.isadmin);
-            res.cookie('user',"5cba1be845e10403f73928e4");
+            res.cookie('user',data.email);
             res.cookie('fname',data.fname) ;
             res.render('welcome.html',{'result':data.fname});
 	      	console.log('true');

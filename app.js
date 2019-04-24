@@ -1,3 +1,4 @@
+var sess;
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -17,9 +18,8 @@ var reservePhotographer = require('./routes/reserve');
 //var bodyParser = require('body-parser'); 
 //var sess;
 var session = require('express-session');
-var sess;
 var app = express();
-
+app.locals.email = "";
 // view engine setup
 
 app.set('views', path.join(__dirname, 'views'));
@@ -43,12 +43,13 @@ app.use('/loginUser', userLogin);
 app.use('/getAvailablePhotographers', availablePhotographers);
 app.use('/reserve',reservePhotographer);
 app.get('/api/logout',function(req, res){
+  req.app.locals.email="";
   res.clearCookie('user');
   res.clearCookie('isadmin');
   res.clearCookie('fname');
   res.send('cookie foo cleared');
 }); 
-app.locals.userdetails = sess;
+//app.locals.userdetails = sess;
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
