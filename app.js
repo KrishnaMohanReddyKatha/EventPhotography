@@ -3,14 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var services = require('./routes/services');
 var galleryRouter = require('./routes/galleryApi');
+var photographerRouter = require('./routes/photographerApi');
 var orderRouter = require('./routes/orderApi');
 var newUser = require('./routes/newUser');
 var userLogin = require('./routes/userLogin');
+var session = require('express-session');
+var availablePhotographers = require('./routes/getAvailablePhotographers');
+var reservePhotographer = require('./routes/reserve');
+//var bodyParser = require('body-parser'); 
+//var sess;
 var session = require('express-session');
 var sess;
 var app = express();
@@ -29,11 +34,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 console.log('in app.js');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/photographers',photographerRouter);
 app.use('/api/services',services);
 app.use('/api/gallery',galleryRouter);
 app.use('/api/orders',orderRouter);
 app.use('/registerNewUser', newUser);
 app.use('/loginUser', userLogin);
+app.use('/getAvailablePhotographers', availablePhotographers);
+app.use('/reserve',reservePhotographer);
+app.get('/api/logout',function(req, res){
+  res.clearCookie('user');
+  res.clearCookie('isadmin');
+  res.clearCookie('fname');
+  res.send('cookie foo cleared');
+}); 
 app.locals.userdetails = sess;
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

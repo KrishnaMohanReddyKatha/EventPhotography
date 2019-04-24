@@ -21,9 +21,7 @@ router.get('/logout', function(req, res, next) {
   res.sendfile('./views/login.html');
 });
 
-router.get('/order', function(req, res, next) {
-  res.sendfile('./views/orders.html');
-});
+
 
 router.get('/booknow', function(req, res, next) {
   res.sendfile('./views/booknow.html');
@@ -35,6 +33,47 @@ router.get('/gallery', function(req, res, next) {
 
 router.get('/signup', function(req, res, next) {
   res.sendfile('./views/signup.html');
+});
+
+router.get('/cancelOrder', function(req, res, next) {
+  res.sendfile('./views/cancel-order.html');
+});
+
+router.get('/admin', function(req, res, next) {
+  res.sendfile('./views/admin.html');
+});
+
+router.get('/addService', function(req, res, next) {
+  res.sendfile('./views/add-service.html');
+});
+
+router.get('/editService', function(req, res, next) {
+  res.sendfile('./views/add-service.html');
+});
+
+
+router.get('/addPhotographer', function(req, res, next) {
+  res.sendfile('./views/add-photographer.html');
+});
+
+router.get('/editPhotographer', function(req, res, next) {
+  res.sendfile('./views/add-photographer.html');
+});
+
+router.get('/booknow', function(req, res, next) {
+  if(sess.email) {
+    res.sendfile('./views/booknow.html');
+  } else {
+    res.sendfile('./views/login.html');
+  }
+});
+
+router.get('/order', function(req, res, next) {
+  if(sess.email) {
+    res.sendfile('./views/orders.html');
+  } else {
+    res.sendfile('./views/login.html');
+  }
 });
 
 module.exports = router;

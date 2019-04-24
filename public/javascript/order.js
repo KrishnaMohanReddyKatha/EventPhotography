@@ -1,22 +1,26 @@
-var user = "";
+$(function(){
 
-user = "11";
+    var isadmin,user,fname=""
+    if (document.cookie != ""){
+        var mycookies = document.cookie.split(";");
+        isadmin = mycookies[0].split("=")[1];
+        user = mycookies[1].split("=")[1];
+        fname= mycookies[2].split("=")[1];
+    }
 
-if (user == "")
-    window.location = "../views/login.html";
+    if (document.cookie == "")
+        window.location = "http://localhost:3000/login";
 
-var myUrl ='api/orders/';
-if (user != "1")
-    myUrl=myUrl+user;
-
-$(document).ready(function(){
+    var myUrl ='api/orders/';
+    if (isadmin != "true")
+        myUrl=myUrl+user;
     $.ajax({
         method: 'GET',
         url: myUrl,
         success:function(orders){
             $.each(orders,function(i,order){
                 var myString ="";
-                myString= myString+'<td>'+order.user_id+'</td>';
+                myString= myString+'<td>'+order._id+'</td>';
                 myString= myString+'<td>'+order.service+'</td>';
                 myString= myString+'<td>'+order.photographer+'</td>';
                 myString= myString+'<td>'+order.date+'</td>';
@@ -31,7 +35,7 @@ $(document).ready(function(){
                     myString= myString+'<td>'+order.status+'</td>';
                 }
                 if (date>=currentDate && order.status == "active"){
-                    myString= myString+'<td>Cancel</td>';
+                    myString= myString+'<td><a href="/cancelOrder?id='+order._id +'"> Cancel </a></td>';
                 }
                 else{
                     myString= myString+'<td></td>';

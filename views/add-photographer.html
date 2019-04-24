@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Event Photographers</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <script src="javascript/add-photographer.js"></script>
+  </head>
+
+  <body>
+   <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">Event Photographers</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto" id="mynavbar">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/order">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/gallery">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/booknow">Book Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="javascript/navbar.js"></script>
+  </nav>
+  <section class ="py-5">
+        <div class="container"id="form">
+            <form>
+                    <div class="form-group" >
+                      <label for="exampleInputEmail1">First Name </label>
+                      <input type="text" class="form-control" id="fname" placeholder="Enter First name ">
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Last Name</label>
+                      <input type="text" class="form-control" id="lname" placeholder="Enter Last name ">
+                    </div>
+                    <div class="form-group" >
+                        <label for="exampleInputEmail1">Id </label>
+                        <input type="text" class="form-control" id="pid" placeholder="Enter Photographer's ID ">
+                        </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="Enter user email ">
+                      </div>
+                      <div class="form-group" >
+                          <label for="exampleInputEmail1">Reserved Dates </label>
+                          <input type="text" class="form-control" id="reservedates" placeholder="Enter Reserved Dates ">
+                          </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Specialized Events</label>
+                          <input type="text" class="form-control" id="sevents" placeholder="Enter list of Specialized services ">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">User Rating Events</label>
+                            <input type="text" class="form-control" id="userrating" placeholder="Enter User rating ">
+                          </div>
+                    <button type="submit" class="btn btn-primary" id="editaddservice">Submit</button>
+                </form>
+        </div>
+  </section>

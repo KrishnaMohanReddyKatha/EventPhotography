@@ -30,7 +30,12 @@ router.post('/', function(req, res, next) {
             console.log(sess);
             console.log('true');
             console.log(data.fname);
-	      	res.render('welcome.html',{'result':data.fname});
+            console.log(data._id);
+            var myid = data._id;
+            res.cookie('isadmin',data.isadmin);
+            res.cookie('user',"5cba1be845e10403f73928e4");
+            res.cookie('fname',data.fname) ;
+            res.render('welcome.html',{'result':data.fname});
 	      	console.log('true');
         } else {
             console.log('false');

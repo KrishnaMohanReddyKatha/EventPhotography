@@ -1,4 +1,4 @@
-html>
+<html>
   <head>
     <title>Event Photographers</title>
     <meta charset="UTF-8" />
@@ -7,6 +7,7 @@ html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <script src="javascript/cancel-order.js"></script>
   </head>
 
   <body>
@@ -36,34 +37,16 @@ html>
           <li class="nav-item">
             <a class="nav-link" href="/booknow">Book Now</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
         </ul>
       </div>
     </div>
+    <script src="javascript/navbar.js"></script>
   </nav>
+  
   <section class ="py-5">
-        <div class="container">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th scope="col">Order Id</th>
-                    <th scope="col">Service</th>
-                    <th scope="col">Photographer</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="myrow">
-
-                </tbody>
-
-            
+    <div class="container" id= "cancelDiv">
+      <p>Do you want to cancel the order ?</p>
+      <button type="button" class="btn btn-secondary" id="yes">Yes</button>
+      <button type="button" class="btn btn-secondary" id="no">No</button>
       </div>
-    </section>
-    <script src="javascript/order.js"></script>
-  </body>
-
+  </section>

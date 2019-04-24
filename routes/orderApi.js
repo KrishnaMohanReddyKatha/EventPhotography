@@ -19,4 +19,19 @@ router.get('/:id', function(req, res) {
        res.json(orders);
 });
 });
+
+router.post('/:id',function(req,res){
+    var collection = db.get('orders');
+    collection.update({
+        _id: req.params.id
+    },{$set:{
+    'status':'Cancel'
+    }
+    },function(err, orders){
+        if (err) throw err;
+        res.send(200);
+});
+});
+
+
 module.exports = router;

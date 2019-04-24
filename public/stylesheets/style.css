@@ -16,6 +16,18 @@
   color: antiquewhite;
 }
 
+#adminrow div{
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    border: 3px solid gray;
+    margin: 2px 5px 5px 1px;
+    color: antiquewhite;
+}
+
+#cancelDiv{
+  margin: 25px 50px 75px 100px;
+}
 .row img {
   max-width: 100%;
   max-height: 100%;
@@ -26,6 +38,10 @@
 }
 
 .row {
+  margin: 25px 50px 75px 100px;
+}
+
+#form {
   margin: 25px 50px 75px 100px;
 }
 
