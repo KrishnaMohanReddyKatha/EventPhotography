@@ -1,8 +1,20 @@
 function validateLogIn() {
     return true;
 }
-
-
+var users = [];
+$(document).ready(function(){
+    $.ajax({
+        method: 'POST',
+        url: '/checkUsername',
+        data : {'username':$("#email").val()},
+        success:function(result){
+            users = result.users;
+            },
+        error:function(){
+            return false;
+        }
+    });        
+});
 
 function validate() {
        var fnameError = false;
@@ -17,9 +29,9 @@ function validate() {
        var pError = $("<span class = 'error' id='pError'>Password should be of length 6 atleast</span>");
        var cpError = $("<span class = 'error' id='cpError'>Both passwords doesnot match</span>");
        var acceptPolicy =  $("<span class = 'error' id='apError'>Accept Terms and Conditions</span>");
-    
-      console.log("I am here");
-      alert("loaded");
+       var existError = $("<span class = 'error' id='emailExistsError'>UserName already exists</span>");
+      //console.log("I am here");
+      //alert("loaded");
        if($("#fname").val() == "" || validateUsername($("#fname").val()) == false) {
            fnameError = true;
            $("#fname").after(fError);
@@ -74,24 +86,15 @@ function validate() {
        if(fnameError || lnameError || emailError || pwdError || cnfmPwdError || termsAndConditions) {
            return false;
        }
-       return true;
+       //var finalError = false;
+       console.log(users);
+       if(!users.includes($("#email").val())) {
+            return true;
+       }
 
-       $.ajax({
-        method: 'POST',
-        url: 'api/videos',
-        data : video,
-        success:function(newvideo){
-            $('#videoList').append('<li style="float:left; padding: 16px;"><img style="width:200px; height:200px;" src="../images/'+newvideo._id+'.jpg"><br>'+newvideo.title+'</li>');
-        },
-        error:function(){
-            alert("Error saving videos" );
-        }
-    });
-
-
-
-
-
+       $("#email").after(existError);
+       $("#emailExistsError").fadeIn(500);
+       return false;
 }
 
 

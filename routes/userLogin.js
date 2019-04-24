@@ -6,14 +6,6 @@ var bcrypt = require('bcryptjs');
 var db = monk('localhost:27017/EventPhotography');
 
 router.post('/', function(req, res, next) {
-
-	/*
-	passport.authenticate('local', {
-        successRedirect: 'public/views/registrationSuccess.html'//,
-        /*failureRedirect: '/users/login',
-        //failureFlash: true
-    })(req, res, next);
-    */
 	var collection = db.get('userLoginInfo');
 	console.log(req.body);
 	collection.findOne({'email':req.body.email}, function(err, data){

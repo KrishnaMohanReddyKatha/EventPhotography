@@ -15,7 +15,8 @@ var userLogin = require('./routes/userLogin');
 var session = require('express-session');
 var availablePhotographers = require('./routes/getAvailablePhotographers');
 var reservePhotographer = require('./routes/reserve');
-//var bodyParser = require('body-parser'); 
+var bodyParser = require('body-parser'); 
+var fileUpload = require('express-fileupload');
 //var sess;
 var session = require('express-session');
 var app = express();
@@ -27,10 +28,13 @@ app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+//app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 console.log('in app.js');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -42,6 +46,22 @@ app.use('/registerNewUser', newUser);
 app.use('/loginUser', userLogin);
 app.use('/getAvailablePhotographers', availablePhotographers);
 app.use('/reserve',reservePhotographer);
+app.post('/checkUsername', function(req, res) {
+  var monk = require('monk');
+  var db = monk('localhost:27017/EventPhotography');
+  var collection = db.get('userLoginInfo');
+  console.log(req.body.username);
+  collection.find({}, function(err, data){
+      if(err)
+        throw err;
+        console.log(data);
+      var users = [];
+      for(i in data) {
+        users.push(data[i].email);
+      }
+      res.send({'users':users});
+  });
+});
 app.get('/api/logout',function(req, res){
   req.app.locals.email="";
   res.clearCookie('user');

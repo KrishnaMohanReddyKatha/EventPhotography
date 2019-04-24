@@ -30,27 +30,38 @@ if(urlParms.get('id') != null)
             }
         });
         }
-        $("#editaddservice").click(function(){   
-            var eventsList = document.getElementById("sevents").value.split(",") ;
-            var datesList = document.getElementById("reservedates").value.split(","); 
-             $.ajax({
-                method: 'POST',
-                url: myUrl+searchString, 
-                data:{
-                    "fname":document.getElementById("fname").value ,
-                    "lname":document.getElementById("lname").value,
-                    "id": document.getElementById("pid").value ,
-                    "email":document.getElementById("email").value,
-                    "reservedDates":datesList,
-                    "specializedEvents":eventsList,
-                    "userrating": document.getElementById("userrating").value 
-                },
-                success: function(){
-                    window.location = "http://localhost:3000/services";
-                },
-                 error:function(){
-                    alert("Error Caceling order out" )
-                }
-          });
-        });
+        // $("#editaddservice").click(function(){ 
+        //     var eventsList = [];
+        //     var datesList = [];  
+        //     console.log("sfsfsd");
+        //     var eventsList = document.getElementById("sevents").value;
+        //     var datesList = document.getElementById("reservedates").value;
+        //     var file = $('input[type="file"]')[0].files[0]; 
+        //     // console.log(image.name);
+        //     var path = "images/234.jpg";
+        //      file.mv(path,function(err){
+        //          return console.log(err); 
+        //      });
+        //     console.log("sfsfsd");
+        //      $.ajax({
+        //         method: 'POST',
+        //         url: myUrl+searchString, 
+        //         data:{
+        //             "fname":document.getElementById("fname").value ,
+        //             "lname":document.getElementById("lname").value,
+        //             "id": document.getElementById("pid").value ,
+        //             "email":document.getElementById("email").value,
+        //             "reservedDates":datesList,
+        //             "specializedEvents":eventsList,
+        //             "userrating": document.getElementById("userrating").value,
+        //            // "pic" :  file
+        //         },
+        //         success: function(){
+        //             window.location = "http://localhost:3000/services";
+        //         },
+        //          error:function(){
+        //             alert("Error Caceling order out" )
+        //         }
+        //   });
+        // });
     });
