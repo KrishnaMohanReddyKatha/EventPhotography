@@ -42,12 +42,7 @@ router.post('/', function(req, res, next) {
 	    	res.json({'result':'false'});
 	    	console.log('false');
         }
-    });
-
-
-
-
-        
+    });        
  }); 
 });
 

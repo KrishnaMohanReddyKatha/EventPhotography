@@ -67,11 +67,12 @@ router.get('/booknow', function(req, res, next) {
 });
 
 router.get('/order', function(req, res, next) {
-  if(sess.email) {
-    res.sendfile('./views/orders.html');
-  } else {
-    res.sendfile('./views/login.html');
-  }
+  res.sendfile('./views/orders.html');
+  // if(sess.email) {
+  //   res.sendfile('./views/orders.html');
+  // } else {
+  //   res.sendfile('./views/login.html');
+  // }
 });
 
 module.exports = router;
