@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
 
         if (isMatch) {
             sess.email=req.body.email;
-            console.log(sess);
+            console.log(sess.email);
             console.log('true');
             console.log(data.fname);
             console.log(data._id);

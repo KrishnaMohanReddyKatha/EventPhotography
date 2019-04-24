@@ -14,9 +14,21 @@ $(function(){
     var myUrl ='api/orders/';
     if (isadmin != "true")
         myUrl=myUrl+user;
+
+    var myUrl ='api/orders/';
+    var mystring = "?";
+    var photographer="";
+    var myserice=""
+    var urlParms = new URLSearchParams(location.search);
+    if(urlParms.get('photographer') != null){
+        mystring=mystring+"photographer="+urlParms.get('photographer');
+    }
+    if(urlParms.get('serice') != null)
+        mystring=mystring+"serice="+urlParms.get('serice');
+    alert(myUrl+mystring);
     $.ajax({
         method: 'GET',
-        url: myUrl,
+        url: myUrl+mystring,
         success:function(orders){
             $.each(orders,function(i,order){
                 var myString ="";
@@ -48,4 +60,26 @@ $(function(){
             alert("Error loadingv ideos" )
         }
     });
+ 
+    $.ajax({
+       
+        method: 'GET',
+        url: 'api/services',
+        success:function(services){
+            $.each(services,function(i,service){
+                //alert("calling");
+                $('#serviceIn').append('<option value="'+service.servicename +'">'+service.servicename+ '</option>');
+            });
+        },
+        error:function(){
+            alert("Error loadingv ideos" )
+        }
+    });
+
+    $("#buttonClick").click(function(){   
+        var myUrl1 = "http://localhost:3000/order?photographer="+document.getElementById("searchId").value 
+        alert(myUrl1);
+        window.location = myUrl1;
+    });
+
 });
